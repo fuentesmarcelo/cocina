@@ -1,0 +1,90 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Styling the nav */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .nav-left h1 {
+    margin: 0;
+  }
+  
+  .nav-right .btn {
+    padding: 8px 16px;
+    margin-left: 10px;
+    background-color: #ff4000;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .nav-right button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Content section styles */
+  .content {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    gap: 40px; /* Space between the two sections */
+}
+  
+  .content-section {
+    width: 40%; /* Adjust for some spacing between sections */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+  }
+  
+  /* Add some basic responsiveness */
+  @media (max-width: 768px) {
+    .content {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .content-section {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .nav-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  
+    .nav-right button {
+      margin-left: 0;
+      margin-top: 10px;
+    }
+  }
+  
+
+.content {
+    display: flex;
+    align-items: center;
+}
+
+.homepageButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div .content h2 {
+    font-weight: 2500;
+}
