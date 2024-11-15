@@ -1,25 +1,41 @@
 <%- include('partials/header') -%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recipe Feed</title>
-</head>
-<body>
-  <h1>Recipe Feed</h1>
-  <ul>
-    <% posts.forEach(post => { %>
-      <li>
-        <h2><%= post.title %></h2>
-        <p><%= post.caption %></p>
-        <img src="<%= post.imagePath %>" alt="Recipe Image" width="200">
-        <p>Likes: <%= post.likes %></p>
-        <a href="/post/<%= post._id %>">View Recipe</a>
-      </li>
-    <% }); %>
-  </ul>
-</body>
-</html>
+<h1>Feed</h1>
+
+<ul>
+  <% posts.forEach(post => { %>
+    <li>
+      <h2><%= post.title %></h2>
+      <p>Likes: <span id="likes-<%= post._id %>"><%= post.likes %></span></p>
+      <button class="like-button" data-id="<%= post._id %>">Like</button>
+    </li>
+  <% }) %>
+</ul>
+
+<script>
+  document.querySelectorAll(".like-button").forEach(button => {
+    button.addEventListener("click", async () => {
+      const postId = button.getAttribute("data-id");
+      try {
+        const res = await fetch(`/post/likePost/${postId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          const likesElement = document.getElementById(`likes-${postId}`);
+          likesElement.textContent = parseInt(likesElement.textContent) + 1;
+        } else {
+          alert("Error liking post");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Failed to like post");
+      }
+    });
+  });
+</script>
 
 <%- include('partials/footer') -%>
