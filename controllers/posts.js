@@ -66,11 +66,13 @@ module.exports = {
         { $inc: { likes: 1 } }
       );
       console.log("Likes +1");
-      res.redirect(`/post/${req.params.id}`);
+      res.status(200).json({ success: true, message: "Post liked successfully!" });
     } catch (err) {
       console.log(err);
+      res.status(500).json({ success: false, message: "Error liking post" });
     }
   },
+  
 
   getEditPost: async (req, res) => {
     try {
