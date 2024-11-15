@@ -20,4 +20,8 @@ router.put("/likePost/:id", ensureAuth, postsController.likePost);
 // Delete Post Route
 router.delete("/:id", ensureAuth, postsController.deletePost);
 
+// Routes for Feed
+router.get("/feed", ensureAuth, postsController.getFeed);
+
+
 module.exports = router;
