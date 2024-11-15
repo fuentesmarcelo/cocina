@@ -1,0 +1,15 @@
+<nav>
+    <ul>
+      <li><a href="/feed">Explore</a></li> <!-- Link to the Explore page -->
+      <li><a href="/profile">My Recipes</a></li> <!-- Link to the user's profile (My Recipes) -->
+      <li><a href="/favorites">Favorite Recipes</a></li> <!-- Link to the Favorite Recipes page -->
+      <li>
+        <% if (user) { %> <!-- Check if the user is logged in -->
+          <a href="/logout">Logout</a> <!-- Link to logout -->
+        <% } else { %>
+          <a href="/login">Login</a> <!-- If the user is not logged in, show Login -->
+        <% } %>
+      </li>
+    </ul>
+  </nav>
+  
