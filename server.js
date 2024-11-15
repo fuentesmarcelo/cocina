@@ -12,30 +12,30 @@ const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
 const bodyParser = require("body-parser"); // Importing body-parser
 
-//Use .env file in config folder
+// Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
 
 // Passport config
 require("./config/passport")(passport);
 
-//Connect To Database
+// Connect To Database
 connectDB();
 
-//Using EJS for views
+// Using EJS for views
 app.set("view engine", "ejs");
 
-//Static Folder
+// Static Folder
 app.use(express.static("public"));
 
-//Body Parsing
+// Body Parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true })); // Adding body-parser for form submissions
 
-//Logging
+// Logging
 app.use(logger("dev"));
 
-//Use forms for put / delete
+// Use forms for put / delete
 app.use(methodOverride("_method"));
 
 // Setup Sessions - stored in MongoDB
@@ -52,14 +52,20 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Use flash messages for errors, info, etc.
+// Use flash messages for errors, info, etc.
 app.use(flash());
 
-//Setup Routes For Which The Server Is Listening
+// Make the `user` object globally available to all views
+app.use((req, res, next) => {
+  res.locals.user = req.user || null;  // Pass `user` to all views
+  next();
+});
+
+// Setup Routes For Which The Server Is Listening
 app.use("/", mainRoutes);
 app.use("/post", postRoutes);
 
-//Server Running
+// Server Running
 app.listen(process.env.PORT, () => {
   console.log("Server is running, you better catch it!");
 });

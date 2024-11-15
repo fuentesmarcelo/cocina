@@ -1,7 +1,6 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
-const User = require("../models/User"); 
-
+const User = require("../models/User");
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -20,7 +19,7 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
-  },  
+  },
 
   getPost: async (req, res) => {
     try {
@@ -72,7 +71,22 @@ module.exports = {
       res.status(500).json({ success: false, message: "Error liking post" });
     }
   },
-  
+
+  getExplore: async (req, res) => {
+    try {
+      // Fetch all posts, sorted by creation date (most recent first)
+      const posts = await Post.find().sort({ createdAt: "desc" }).lean();
+
+      // Render the explore page with the fetched posts
+      res.render("explore", {
+        posts,
+        user: req.user,
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Server Error");
+    }
+  },
 
   getEditPost: async (req, res) => {
     try {

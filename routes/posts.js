@@ -23,5 +23,7 @@ router.delete("/:id", ensureAuth, postsController.deletePost);
 // Routes for Feed
 router.get("/feed", ensureAuth, postsController.getFeed);
 
+// Explore Route
+router.get("/explore", ensureAuth, postsController.getExplore); // Added Explore route
 
 module.exports = router;

@@ -42,10 +42,17 @@
           <li><a href="/favorite-recipes">Favorite Recipes</a></li>
         </ul>
 
-        <!-- Buttons Section -->
+        <!-- Buttons Section (Conditional rendering based on user authentication) -->
         <div class="nav-right">
-          <a href="/login" class="btn">Login</a>
-          <a href="/signup" class="btn">Sign Up</a>
+          <% if (user) { %>
+            <!-- If user is logged in -->
+            <a href="/profile" class="btn">Profile</a>
+            <a href="/logout" class="btn">Logout</a>
+          <% } else { %>
+            <!-- If user is not logged in -->
+            <a href="/login" class="btn">Login</a>
+            <a href="/signup" class="btn">Sign Up</a>
+          <% } %>
         </div>
       </nav>
     </header>

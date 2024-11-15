@@ -11,52 +11,60 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #333; /* Updated for dark background */
+  background-color: #333; /* Dark background */
   border-bottom: 1px solid #ddd;
 }
 
-nav ul {
-  list-style-type: none; /* Remove default list styling */
-  margin: 0;
-  padding: 0;
-  display: flex; /* Align items horizontally */
-  justify-content: space-around; /* Space out items evenly */
-  width: 100%;
-}
-
-nav ul li {
-  display: inline;
-}
-
-nav ul li a {
-  color: white; /* Updated for white text */
-  text-decoration: none; /* Remove underline from links */
-  padding: 10px 20px; /* Add padding around links */
-  font-size: 16px;
-}
-
-nav ul li a:hover {
-  background-color: #555; /* Change background on hover */
-  border-radius: 5px; /* Rounded corners for hover effect */
+.nav-left {
+  display: flex;
+  align-items: center;
 }
 
 .nav-left h1 {
   margin: 0;
-  color: white; /* Ensure it matches the dark navbar */
+}
+
+.nav-left a img {
+  display: block;
+  width: 150px;
+  height: auto;
+}
+
+/* Navigation links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px; /* Space between links */
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+.nav-links li a:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+/* Buttons Section */
+.nav-right {
+  display: flex;
+  gap: 10px;
 }
 
 .nav-right .btn {
   padding: 8px 16px;
-  margin-left: 10px;
   background-color: #ff4000;
   color: white;
   text-decoration: none;
   border-radius: 4px;
-  display: inline-block;
   text-align: center;
 }
 
-.nav-right button:hover {
+.nav-right .btn:hover {
   background-color: #0056b3;
 }
 
@@ -77,25 +85,38 @@ nav ul li a:hover {
 
 /* Add some basic responsiveness */
 @media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-left,
+  .nav-links,
+  .nav-right {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
   .content {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .content-section {
-      width: 100%;
-      margin-bottom: 20px;
+    width: 100%;
+    margin-bottom: 20px;
   }
 
   .nav-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-  }
-
-  .nav-right button {
-      margin-left: 0;
-      margin-top: 10px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
 }
 
